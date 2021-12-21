@@ -136,8 +136,8 @@ public class Hooks implements En {
 	    final File source = screenShot.getScreenshotAs(OutputType.FILE);
 		String screenshotName = screenshotName(scenario, dateString, dateAndTimeString);
 		final String dest = ".." + File.separator + "target" + File.separator + "cucumber-html-reports" + File.separator +  screenshotName;
-	    final File destination = new File(dest);
-	    FileUtils.copyFile(source, destination);
+//	    final File destination = new File(dest);
+//	    FileUtils.copyFile(source, destination);
 		scenario.attach(Files.readAllBytes(source.toPath()), "image/png", screenshotName);
 	    return dest;
 	  }
