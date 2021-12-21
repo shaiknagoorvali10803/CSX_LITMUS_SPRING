@@ -1,4 +1,4 @@
-library 'webAppTest'
+library 'webAppTest@run-test-only-for-master'
 
 // Call to Jenkins Library
 webAppTest {
