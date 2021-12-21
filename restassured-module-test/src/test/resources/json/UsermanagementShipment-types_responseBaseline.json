@@ -1,0 +1,54 @@
+[
+   {
+      "shipmentType":"CARLOAD",
+      "uiRepresentation":"Carload",
+      "userTypes":[
+         {
+            "bundle":"sx.carload",
+            "uiRepresentation":"Customer",
+            "userType":"CUSTOMER"
+         },
+         {
+            "bundle":"sx.class1",
+            "uiRepresentation":"Class 1",
+            "userType":"CLASS1"
+         },
+         {
+            "bundle":"sx.carload",
+            "uiRepresentation":"3PL",
+            "userType":"THREEPL"
+         },
+         {
+            "bundle":"sx.govtbilling",
+            "uiRepresentation":"Government Billing",
+            "userType":"GOVERNMENTBILLING"
+         },
+         {
+            "bundle":"sx.shortline",
+            "uiRepresentation":"Short Line",
+            "userType":"SHORTLINE"
+         }
+      ]
+   },
+   {
+      "shipmentType":"INTERMODAL",
+      "uiRepresentation":"Intermodal",
+      "userTypes":[
+         {
+            "bundle":"sx.intermodal",
+            "uiRepresentation":"Customer",
+            "userType":"CUSTOMER"
+         },
+         {
+            "bundle":"sx.railplus",
+            "uiRepresentation":"Railplus",
+            "userType":"RAILPLUS"
+         },
+         {
+            "bundle":"sx.intermodal",
+            "uiRepresentation":"3PL",
+            "userType":"THREEPL"
+         }
+      ]
+   }
+]
