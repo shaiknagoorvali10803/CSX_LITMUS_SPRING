@@ -1,4 +1,4 @@
-package com.csx.test.util;
+package com.csx;
 
 
 import io.cucumber.java8.Scenario;

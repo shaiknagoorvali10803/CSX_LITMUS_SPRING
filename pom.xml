@@ -5,9 +5,8 @@
 
 	<groupId>com.csx.test</groupId>
 	<artifactId>litmus</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<version>${revision}${sha1}${changelist}</version>
 	<packaging>pom</packaging>
-	<name>${csx.app.code}-${project.artifactId}</name>
 
 	<parent>
 		<groupId>com.csx.enterprise</groupId>
@@ -16,18 +15,17 @@
 	</parent>
 
 	<properties>
+		<revision>0.0.1</revision>
+		<changelist>-SNAPSHOT</changelist>
+		<sha1></sha1>
 		<!-- CSX Application Code -->
 		<csx.app.code>en</csx.app.code>
 
 		<!-- SCM Repo Location -->
-		<csx.scm.project>en</csx.scm.project>
-		<csx.scm.repo>archetype-csxstarter-utility</csx.scm.repo>
+		<csx.scm.project>ENTREF</csx.scm.project>
+		<csx.scm.repo>litmus</csx.scm.repo>
 
-		<!-- Example: <csx.project.versionTagPrefix>csxstarter</csx.project.versionTagPrefix> -->
-
-		<!-- CSX Starter Archetype Version -->
-		<csx.starter.archetype.version>2.0.0</csx.starter.archetype.version>
-<!--do not increase this version beyond 6.11.0 because cucumber-weld is supported till only this version-->
+		<!--do not increase this version beyond 6.11.0 because cucumber-weld is supported till only this version-->
 		<cucumber.version>6.11.0</cucumber.version>
 	</properties>
 
@@ -48,13 +46,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Mockito 2.x -->
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>2.21.0</version>
-		</dependency>
-
 		<!-- Cucumber dependencies -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -99,145 +90,144 @@
 			<version>2.4.8.Final</version>
 		</dependency>
 
-		<!-- Selenium -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.1.0</version>
-		</dependency>
-
-		<!-- Reporting -->
+<!--		&lt;!&ndash; Selenium &ndash;&gt;-->
 <!--		<dependency>-->
-<!--			<groupId>com.aventstack</groupId>-->
-<!--			<artifactId>extentreports-cucumber4-adapter</artifactId>-->
-<!--			<version>1.2.1</version>-->
+<!--			<groupId>org.seleniumhq.selenium</groupId>-->
+<!--			<artifactId>selenium-java</artifactId>-->
+<!--			<version>4.1.0</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Reporting &ndash;&gt;-->
+<!--&lt;!&ndash;		<dependency>&ndash;&gt;-->
+<!--&lt;!&ndash;			<groupId>com.aventstack</groupId>&ndash;&gt;-->
+<!--&lt;!&ndash;			<artifactId>extentreports-cucumber4-adapter</artifactId>&ndash;&gt;-->
+<!--&lt;!&ndash;			<version>1.2.1</version>&ndash;&gt;-->
+<!--&lt;!&ndash;			<scope>test</scope>&ndash;&gt;-->
+<!--&lt;!&ndash;		</dependency>&ndash;&gt;-->
+
+<!--		&lt;!&ndash; For managing browsers drivers &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.github.bonigarcia</groupId>-->
+<!--			<artifactId>webdrivermanager</artifactId>-->
+<!--			<version>5.0.3</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For logging &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>ch.qos.logback</groupId>-->
+<!--			<artifactId>logback-core</artifactId>-->
+<!--			<version>1.2.8</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>ch.qos.logback</groupId>-->
+<!--			<artifactId>logback-classic</artifactId>-->
+<!--			<version>1.2.8</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For Rest Assured API testing &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>io.rest-assured</groupId>-->
+<!--			<artifactId>rest-assured</artifactId>-->
+<!--			<version>4.4.0</version>-->
 <!--			<scope>test</scope>-->
 <!--		</dependency>-->
 
-		<!-- Commons -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.11.0</version>
-		</dependency>
+<!--		&lt;!&ndash; For JSON file handling &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.json</groupId>-->
+<!--			<artifactId>json</artifactId>-->
+<!--			<version>20211205</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For getting PDF content as string &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.pdfbox</groupId>-->
+<!--			<artifactId>pdfbox</artifactId>-->
+<!--			<version>2.0.24</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For JDBC connection &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.oracle.jdbc</groupId>-->
+<!--			<artifactId>ojdbc8</artifactId>-->
+<!--			<version>12.2.0.1</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For JDBC DriverManager &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>c3p0</groupId>-->
+<!--			<artifactId>c3p0</artifactId>-->
+<!--			<version>0.9.1.2</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For CSX Security OAUTH2.0 &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.csx.test</groupId>-->
+<!--			<artifactId>csx-test-security</artifactId>-->
+<!--			<version>1.1.0</version>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; For Excel handling &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi</artifactId>-->
+<!--			<version>5.0.0</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi-ooxml</artifactId>-->
+<!--			<version>5.0.0</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.apache.xmlbeans</groupId>-->
+<!--			<artifactId>xmlbeans</artifactId>-->
+<!--			<version>5.0.1</version>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.apache.poi</groupId>-->
+<!--			<artifactId>poi-ooxml-schemas</artifactId>-->
+<!--			<version>4.1.2</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Screen Recording &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.github.stephenc.monte</groupId>-->
+<!--			<artifactId>monte-screen-recorder</artifactId>-->
+<!--			<version>0.7.7.0</version>-->
+<!--		</dependency>-->
+
+
+<!--		&lt;!&ndash; for CSV file handling &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>com.opencsv</groupId>-->
+<!--			<artifactId>opencsv</artifactId>-->
+<!--			<version>5.5.2</version>-->
+<!--		</dependency>-->
+
+<!--		&lt;!&ndash; Apache Commons CSV handling &ndash;&gt;-->
+<!--		<dependency>-->
+<!--			<groupId>org.apache.commons</groupId>-->
+<!--			<artifactId>commons-csv</artifactId>-->
+<!--			<version>1.9.0</version>-->
+<!--		</dependency>-->
 
 		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<version>20030203.000129</version>
+			<groupId>com.csx.test</groupId>
+			<artifactId>litmus-common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<!-- For managing browsers drivers -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>5.0.3</version>
-		</dependency>
-
-		<!-- For logging -->
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-core</artifactId>
-			<version>1.2.8</version>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.2.8</version>
-		</dependency>
-
-		<!-- For Rest Assured API testing -->
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>4.4.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- For JSON file handling -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20211205</version>
-		</dependency>
-
-		<!-- For getting PDF content as string -->
-		<dependency>
-			<groupId>org.apache.pdfbox</groupId>
-			<artifactId>pdfbox</artifactId>
-			<version>2.0.24</version>
-		</dependency>
-
-		<!-- For JDBC connection -->
-		<dependency>
-			<groupId>com.oracle.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>12.2.0.1</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- For JDBC DriverManager -->
-		<dependency>
-			<groupId>c3p0</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>0.9.1.2</version>
-		</dependency>
-
-		<!-- For CSX Security OAUTH2.0 -->
-		<dependency>
-			<groupId>com.csx.test</groupId>
-			<artifactId>csx-test-security</artifactId>
-			<version>1.1.0</version>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- For Excel handling -->
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
 			<version>5.0.0</version>
 		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>5.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.xmlbeans</groupId>
-			<artifactId>xmlbeans</artifactId>
-			<version>5.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>4.1.2</version>
-		</dependency>
-
-		<!-- Screen Recording -->
-		<dependency>
-			<groupId>com.github.stephenc.monte</groupId>
-			<artifactId>monte-screen-recorder</artifactId>
-			<version>0.7.7.0</version>
-		</dependency>
-
-
-		<!-- for CSV file handling -->
-		<dependency>
-			<groupId>com.opencsv</groupId>
-			<artifactId>opencsv</artifactId>
-			<version>5.5.2</version>
-		</dependency>
-
-		<!-- Apache Commons CSV handling -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-csv</artifactId>
-			<version>1.9.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -272,7 +262,6 @@
 
 	<!-- Child Modules -->
 	<modules>
-		<module>common-test</module>
 		<module>restassured-module-test</module>
 		<module>selenium-module-test</module>
 	</modules>

@@ -1,4 +1,4 @@
-package com.csx.test.util;
+package com.csx;
 
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import io.github.bonigarcia.wdm.managers.EdgeDriverManager;

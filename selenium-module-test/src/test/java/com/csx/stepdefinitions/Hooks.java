@@ -1,5 +1,7 @@
 package com.csx.stepdefinitions;
 
+import com.csx.ScenarioContext;
+import com.csx.WebDriverProvider;
 import com.csx.test.util.*;
 import io.cucumber.java8.En;
 import io.cucumber.java8.Scenario;
@@ -27,9 +29,6 @@ public class Hooks implements En {
 
   @Inject
   private ScenarioContext scenarioContext;
-
-	@Inject
-	VideoRecorder videoRecorder;
 
 	public Hooks() {
 		Before("@Chrome and not (@Headless or @IE or @Safari or @Firefox or @Edge)", (final Scenario scenario) -> {
@@ -104,7 +103,7 @@ public class Hooks implements En {
 				try {
 					captureScreenshot(driverFactory.getInstance(), scenario);
 					if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-						videoRecorder.stopRecording();
+						VideoRecorder.stopRecording();
 					}
 				} catch (ClassCastException | IOException e) {
 					throw new LoggingException(e);
@@ -112,7 +111,7 @@ public class Hooks implements En {
 			} 
 			else {
 				if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-					videoRecorder.stopRecording();
+					VideoRecorder.stopRecording();
 					String fileName = FileHandlingUtil.getTheNewestFile(SeleniumUtil.downloadPath, SeleniumUtil.videoFileType);
 					FileHandlingUtil.deleteExistingFile(fileName);
 				}
@@ -124,7 +123,7 @@ public class Hooks implements En {
 
 	private void localVideoRecord() throws Exception {
 		if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-			videoRecorder.startRecording();
+			VideoRecorder.startRecording();
 		}
 	}
 
