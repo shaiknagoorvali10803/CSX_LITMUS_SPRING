@@ -10,8 +10,14 @@
 	<parent>
 		<groupId>com.csx.test</groupId>
 		<artifactId>litmus</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>${revision}${sha1}${changelist}</version>
 	</parent>
+
+	<properties>
+		<revision>0.0.1</revision>
+		<changelist>-SNAPSHOT</changelist>
+		<sha1></sha1>
+	</properties>
 
 	<dependencies>
 		<dependency>
