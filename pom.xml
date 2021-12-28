@@ -93,7 +93,7 @@
 		<dependency>
 			<groupId>com.csx.test</groupId>
 			<artifactId>litmus-util</artifactId>
-			<version>0.0.1-a4226edb</version>
+			<version>0.0.3-SNAPSHOT</version>
 		</dependency>
 
 		<!-- For managing browsers drivers -->
