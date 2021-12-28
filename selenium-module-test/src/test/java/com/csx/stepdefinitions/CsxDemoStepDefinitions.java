@@ -1,9 +1,9 @@
 package com.csx.stepdefinitions;
 
+import com.csx.WebDriverProvider;
 import com.csx.page.actions.CsxDemoPageActions;
 import com.csx.test.util.LoggingException;
 import com.csx.test.util.SeleniumUtil;
-import com.csx.test.util.WebDriverProvider;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

@@ -1,7 +1,7 @@
 package com.csx.page.actions;
 
+import com.csx.WebDriverProvider;
 import com.csx.page.objects.CsxDemoPageObjects;
-import com.csx.test.util.WebDriverProvider;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
