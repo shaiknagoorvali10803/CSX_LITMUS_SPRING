@@ -15,7 +15,7 @@ Litmus is functional automation testing framework for UI and API's. This framewo
 - [Browser versions](#Bonigarcia)
 
 ## Architecture
-![Litmus](./readmefiles/litmus.png)
+![Litmus](readmefiles/litmus.png)
 
 ## Tools
 * [Selenium](https://www.selenium.dev/documentation/en/webdriver/)
@@ -39,10 +39,10 @@ Framework is designed to give reports individually to each sub-module. This appr
 ## Framework Set up
 1. Fork this [repo](https://git.csx.com/projects/ENTREF/repos/litmus/browse). 
    
-![Fork Repo](./readmefiles/forkrepo.png)
+![Fork Repo](readmefiles/forkrepo.png)
 3. After forking the repo, give the name to this repo, for example [team name]-automation.
    
-![Give a name to repo](./readmefiles/renamerepo.png)
+![Give a name to repo](readmefiles/renamerepo.png)
 5. If needed please change the name in pom.xml too. Even if we do not change it, it is not going to having any impact because we do not create artifact of this repo.
 6. It is recommended to change the modules (selenium, rest-assured) names as per teams requirements.
 7. Dont forget to update this README.md after forking :D.
@@ -56,17 +56,17 @@ This is the [base url of jenkins](https://jenkins.apps.ocpjaxp001.csx.com/). In 
 
 > **_NOTE:_** If you do not see your automation repository in jenkins, please click *Scan Organization Folder Now* under your team in jenkins.
 
-![Scan Jenkins](./readmefiles/jenkinsscan.png)
+![Scan Jenkins](readmefiles/jenkinsscan.png)
 
 ## Reporting
 Framework is inbuilt with reports for test scripts results, these reports can be seen in [Jenkins](#Jenkins URL) in *Artifacts*.
 
-![Report](./readmefiles/report.png)
+![Report](readmefiles/report.png)
 
 ## Screenshots
 Framework integrated with capability to take screenshots automatically when a test script fails. These screenshots are integrated in [report](#Reporting) automatically. 
 
-![Sample screenshot](./readmefiles/screenshot.png)
+![Sample screenshot](readmefiles/screenshot.png)
 
 ## Video Recording
 Video recording is enabled only for local environment because of resources constraint in higher environments.
