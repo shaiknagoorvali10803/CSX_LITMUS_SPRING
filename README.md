@@ -4,20 +4,20 @@ Litmus is functional automation testing framework for UI and API's. This framewo
 ## Table of content
 - [Architecture](#Architecture)
 - [Tools](#Tools)
-- [Framework Hierarchy](#Framework Hierarchy)
-- [Framework Set up](#Framework Set up)
-- [Jenkins Integration](#Jenkins Integration)
-    - [Jenkins URL](#Jenkins URL)
-- [Reporting](#Reporting)
-  - [Screenshots](#Screenshots)
-  - [Video Recording](#Video Recording)
-- [Selenium Grid](#Selenium Grid)
-- [Browser versions](#Bonigarcia)
+- [Framework Hierarchy](#markdown-header-framework-hierarchy)
+- [Framework Set up](#markdown-header-framework-set-up)
+- [Jenkins Integration](#markdown-header-jenkins-integration)
+    - [Jenkins URL](#markdown-header-jenkins-url)
+- [Reporting](#markdown-header-reporting)
+  - [Screenshots](#markdown-header-screenshots)
+  - [Video Recording](#markdown-header-video-recording)
+- [Selenium Grid](#markdown-header-selenium-grid)
+- [Browser versions](#markdown-header-bonigarcia)
 
-## Architecture
+# Architecture
 ![Litmus](readmefiles/litmus.png)
 
-## Tools
+# Tools
 * [Selenium](https://www.selenium.dev/documentation/en/webdriver/)
 * [Cucumber](https://cucumber.io/docs/cucumber/)
 * [Gherkin Syntax](https://cucumber.io/docs/gherkin/)
@@ -25,7 +25,7 @@ Litmus is functional automation testing framework for UI and API's. This framewo
 * [Little bit of docker](https://www.docker.com/get-started)
 * [Jenkins](https://www.jenkins.io/doc/)
 
-## Framework Hierarchy
+# Framework Hierarchy
 This framework is structured to be a multi-module. 
 
 Let's say even if your team has multiple modules like module1, module2, module3; create only one automation repository which acts as umbrella for these sub-modules tests. Please create these sub-module modules within the main umbrella test repository. 
@@ -36,7 +36,7 @@ Let's say even if your team has multiple modules like module1, module2, module3;
 Framework is designed to give reports individually to each sub-module. This approach helps us to see smoke testing reports of all the modules in single place in [Jenkins](#Jenkins Integration).
 
 
-## Framework Set up
+# Framework Set up
 1. Fork this [repo](https://git.csx.com/projects/ENTREF/repos/litmus/browse). 
    
 ![Fork Repo](readmefiles/forkrepo.png)
@@ -48,7 +48,7 @@ Framework is designed to give reports individually to each sub-module. This appr
 7. Dont forget to update this README.md after forking :D.
 > **_NOTE:_** While changing the repository name please do not forget to handle this change in main pom xml. If you are changing sub-module name please change accordingly in sub-module pom xml and in main pom dependencies section. 
 
-## Jenkins Integration
+# Jenkins Integration
 This framework is automatically linked to Jenkins because of Jenkinsfile in the repository. To know more about the content of the Jenkinsfile please refer to this [link](https://git.csx.com/projects/JENK/repos/jenkins-lib-web-automation-testing/browse). Please read carefully about *cucumberTagToRun* in this link. 
 
 ## Jenkins URL
@@ -58,7 +58,7 @@ This is the [base url of jenkins](https://jenkins.apps.ocpjaxp001.csx.com/). In 
 
 ![Scan Jenkins](readmefiles/jenkinsscan.png)
 
-## Reporting
+# Reporting
 Framework is inbuilt with reports for test scripts results, these reports can be seen in [Jenkins](#Jenkins URL) in *Artifacts*.
 
 ![Report](readmefiles/report.png)
@@ -73,8 +73,8 @@ Video recording is enabled only for local environment because of resources const
 
 > **_NOTE_** *localVideoRecord* is system property used to enable/disable video recording functionality. By default video recording is disabled. In order to enable video recording please add system property *localVideoRecord* value to be *true* in either eclipse or maven command.
 
-## Bonigarcia
+# Bonigarcia
 In order to handle selenium drivers for different browser versions and operating systems, this framework uses external dependency called [bonigarcia](https://github.com/bonigarcia/webdrivermanager).
 
-## Selenium Grid
+# Selenium Grid
 In order to get more information about selenium grid integration with this framework, please visit this [wiki link](https://wiki.csx.com/display/AD/Selenium+Grid).
