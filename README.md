@@ -2,8 +2,8 @@
 Litmus is functional automation testing framework for UI and API's. This framework will help to create testing scripts without worrying about the infrastructure setup to run test scripts. 
 
 ## Table of content
-- [Architecture](#Architecture)
-- [Tools](#Tools)
+- [Architecture](#architecture)
+- [Tools](#tools)
 - [Framework Hierarchy](#markdown-header-framework-hierarchy)
 - [Framework Set up](#markdown-header-framework-set-up)
 - [Jenkins Integration](#markdown-header-jenkins-integration)
@@ -14,10 +14,10 @@ Litmus is functional automation testing framework for UI and API's. This framewo
 - [Selenium Grid](#markdown-header-selenium-grid)
 - [Browser versions](#markdown-header-bonigarcia)
 
-# Architecture
+# Architecture <a name="architecture"></a>
 ![Litmus](readmefiles/litmus.png)
 
-# Tools
+# Tools <a name="tools"></a>
 * [Selenium](https://www.selenium.dev/documentation/en/webdriver/)
 * [Cucumber](https://cucumber.io/docs/cucumber/)
 * [Gherkin Syntax](https://cucumber.io/docs/gherkin/)
