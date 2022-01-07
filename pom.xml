@@ -138,5 +138,6 @@
 	<modules>
 		<module>restassured-module-test</module>
 		<module>selenium-module-test</module>
+		<module>kafka-protobuf-cucumber-module-test</module>
 	</modules>
 </project>
