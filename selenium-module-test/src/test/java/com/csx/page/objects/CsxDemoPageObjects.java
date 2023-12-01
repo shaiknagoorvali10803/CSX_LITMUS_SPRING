@@ -1,12 +1,12 @@
 package com.csx.page.objects;
 
+import com.csx.springConfig.annotation.Page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import javax.inject.Singleton;
 
-@Singleton
+@Page
 public class CsxDemoPageObjects {
 
   @FindBy(how = How.XPATH, using = "//*[@id=\"header_logo\"]/a/img")

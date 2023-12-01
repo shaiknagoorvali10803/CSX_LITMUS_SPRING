@@ -1,42 +1,45 @@
 package com.csx.page.actions;
 
-import com.csx.WebDriverProvider;
 import com.csx.page.objects.CsxDemoPageObjects;
+import com.csx.springConfig.annotation.LazyAutowired;
+import com.csx.springConfig.annotation.Page;
+import com.csx.stepdefinitions.ScenarioContext;
+import com.csx.test.util.ScreenshotUtils;
+import com.csx.test.util.SeleniumUtil;
+import io.cucumber.java.Scenario;
+import jakarta.annotation.PostConstruct;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
-/**
- *
- * Page actions always has to be singleton
- *
- */
-@Singleton
+@Page
 public class CsxDemoPageActions {
 
-  @Inject
+  @LazyAutowired
   private CsxDemoPageObjects pageObjects;
 
-  @Inject
-  WebDriverProvider driverProvider;
+  @Autowired
+  private WebDriver driver;
+  @Autowired
+  private WebDriverWait wait;
+  @LazyAutowired
+  private SeleniumUtil utils;
 
-  /**
-   * Because WELD injects objects after constructor is called
-   */
+  Scenario scenario;
+  @LazyAutowired
+  ScreenshotUtils screenshotUtils;
+
+  @Autowired
+  ScenarioContext scenarioContext;
+
   @PostConstruct
-  private void setup() {
-    PageFactory.initElements(driverProvider.getInstance(), pageObjects);
+  private void init(){
+    PageFactory.initElements(this.driver, this.pageObjects);
+    scenario =scenarioContext.getScenario();
   }
 
   public boolean isHeaderImagePresent() {
-    final WebDriverWait driverWait = new WebDriverWait(driverProvider.getInstance(), 10);
-    if (driverWait.until(ExpectedConditions.visibilityOf(pageObjects.csxImage)).isDisplayed()) {
-      return  pageObjects.csxImage.isDisplayed();
-    }
-    return false;
+    return SeleniumUtil.isElementDisplayed(driver,pageObjects.csxImage);
   }
 }

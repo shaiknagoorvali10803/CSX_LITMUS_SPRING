@@ -1,0 +1,9 @@
+/.idea/
+/selenium-module-test/REPORTS/
+/selenium-module-test/Log/
+/selenium-module-test/target/
+/selenium-module-test/*.avi
+/restassured-module-test/REPORTS/
+/restassured-module-test/Log/
+/restassured-module-test/target/
+/kafka-protobuf-cucumber-module-test/target/

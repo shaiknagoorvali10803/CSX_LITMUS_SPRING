@@ -1,149 +1,38 @@
 package com.csx.stepdefinitions;
 
-import com.csx.ScenarioContext;
-import com.csx.WebDriverProvider;
-import com.csx.test.util.*;
-import io.cucumber.java8.En;
-import io.cucumber.java8.Scenario;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.BooleanUtils;
+import com.csx.springConfig.annotation.LazyAutowired;
+import com.csx.test.util.FileHandlingUtil;
+import com.csx.test.util.LoggingException;
+import com.csx.test.util.VideoRecorder;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.apache.commons.lang3.BooleanUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.springframework.context.ApplicationContext;
 
-import javax.inject.Inject;
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 
+public class Hooks {
+    @LazyAutowired
+    private ApplicationContext applicationContext;
 
-/**
- *
- * This Hooks class has to be present in the same package as step definitions
- *
- */
-public class Hooks implements En {
-	public static final String LOCAL_VIDEO_RECORD_FLAG = "localVideoRecord";
-	@Inject
-  private WebDriverProvider driverFactory;
+    @After
+    public void afterScenario(Scenario scenario) throws Exception {
+        if (scenario.isFailed()) {
+            scenario.attach(((TakesScreenshot) this.applicationContext.getBean(WebDriver.class)).getScreenshotAs(OutputType.BYTES), "image/png", scenario.getName());
+        }
+        this.applicationContext.getBean(WebDriver.class).quit();
+    }
 
-  @Inject
-  private ScenarioContext scenarioContext;
-
-	public Hooks() {
-		Before("@Chrome and not (@Headless or @IE or @Safari or @Firefox or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.CHROME);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("(@Chrome and @Headless) and not (@IE or @Safari or @Firefox or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.CHROME, true);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("@IE and not (@Chrome or @Safari or @Firefox or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.INTERNET_EXPLORER);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("@Safari and not (@Chrome or @IE or @Firefox or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.SAFARI);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("@Firefox and not (@Headless or @Chrome or @Safari or @IE or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.FIRE_FOX);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("(@Firefox and @Headless) and not (@Chrome or @Safari or @IE or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.FIRE_FOX, true);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("@Edge and not (@Chrome or @Safari or @IE or @Firefox)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.EDGE, true);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		Before("not (@Chrome or @IE or @Safari or @Firefox or @Edge)", (final Scenario scenario) -> {
-			//initialize video recording on only local
-			localVideoRecord();
-			driverFactory.generateWebDriver(WebDriverProvider.BrowserType.CHROME);
-			// initialize context
-			scenarioContext.setScenario(scenario);
-		});
-
-		After((final Scenario scenario) -> {
-			// clear scenario context after each scenario
-			scenarioContext = new ScenarioContext();
-			scenarioContext.clearContextData();
-			if (scenario.isFailed()) {
-				try {
-					captureScreenshot(driverFactory.getInstance(), scenario);
-					if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-						VideoRecorder.stopRecording();
-					}
-				} catch (ClassCastException | IOException e) {
-					throw new LoggingException(e);
-				}
-			} 
-			else {
-				if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-					VideoRecorder.stopRecording();
-					String fileName = FileHandlingUtil.getTheNewestFile(SeleniumUtil.downloadPath, SeleniumUtil.videoFileType);
-					FileHandlingUtil.deleteExistingFile(fileName);
-				}
-			}
-			driverFactory.getInstance().close();
-			driverFactory.getInstance().quit();
-		});
-	}
-
-	private void localVideoRecord() throws Exception {
-		if (BooleanUtils.toBoolean(System.getProperty(LOCAL_VIDEO_RECORD_FLAG))) {
-			VideoRecorder.startRecording();
-		}
-	}
-
-	private String captureScreenshot(final WebDriver driver, final Scenario scenario) throws IOException {
-	    //final Date now = new Date();
-	    final String dateString = DateTimeUtil.todayDate("dd-MMM-yyy");
-	    final String dateAndTimeString = DateTimeUtil.todayDate("dd-MMM-yyy");
-	    final TakesScreenshot screenShot = (TakesScreenshot) driver;
-	    final File source = screenShot.getScreenshotAs(OutputType.FILE);
-		String screenshotName = screenshotName(scenario, dateString, dateAndTimeString);
-		final String dest = ".." + File.separator + "target" + File.separator + "cucumber-html-reports" + File.separator +  screenshotName;
-//	    final File destination = new File(dest);
-//	    FileUtils.copyFile(source, destination);
-		scenario.attach(Files.readAllBytes(source.toPath()), "image/png", screenshotName);
-	    return dest;
-	  }
-
-	private String screenshotName(Scenario scenario, String dateString, String dateAndTimeString) {
-		return dateString + File.separator
-				+ "Error_" + scenario.getName().replaceAll(" ", "_") + dateAndTimeString.replaceAll(" ", "_") + ".png";
-	}
+    private void localVideoRecord() throws Exception {
+        if (!BooleanUtils.toBoolean(System.getProperty("buildToolRun"))) {
+            VideoRecorder.startRecording();
+        }
+    }
 
 }
+
+

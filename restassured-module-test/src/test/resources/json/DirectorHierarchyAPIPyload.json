@@ -1,0 +1,24 @@
+{
+  "suspensionTestOnly": false,
+  "sortType": "sortByMPAsc",
+  "user": {
+    "positionCode": null,
+    "forceCode": null
+  },
+  "testType": [],
+  "pageContext": null,
+  "frequencyInDays": null,
+  "zone": null,
+  "subdivision": null,
+  "city": null,
+  "milepostRanges": [],
+  "state": null,
+  "searchValue": null,
+  "wildcardSearch": null,
+  "siteName": null,
+  "groupingStatus": "ALL",
+  "positionCode": null,
+  "workOrderTypes": [
+    "FRA"
+  ]
+}
