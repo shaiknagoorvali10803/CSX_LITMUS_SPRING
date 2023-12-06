@@ -30,12 +30,9 @@ public class HomeSteps {
     private void init(){
         PageFactory.initElements(this.driver, this);
     }
-    Scenario scenario;
     @Before
     public void settingScenario(Scenario scenario) {
-        this.scenario=scenario;
         scenarioContext.setScenario(scenario);
-        System.out.println("scenarion object in home page by : ==>"+ scenario );
     }
 
 

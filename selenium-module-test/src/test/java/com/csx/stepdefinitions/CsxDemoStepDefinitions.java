@@ -31,13 +31,11 @@ public class CsxDemoStepDefinitions {
 
     @LazyAutowired
     ScreenshotUtils screenshotUtils;
-    Scenario scenario;
     @Autowired
     ScenarioContext scenarioContext;
 
     @Before
     public void settingScenario(Scenario scenario) {
-        this.scenario=scenario;
         scenarioContext.setScenario(scenario);
     }
 

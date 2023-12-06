@@ -35,8 +35,6 @@ public class VisaSteps {
     @LazyAutowired
     private GooglePageActions googlePage;
 
-    Scenario scenario;
-
     @LazyAutowired
     ScenarioContext scenarioContext;
 
@@ -47,15 +45,13 @@ public class VisaSteps {
 
     @Before
     public void settingScenario(Scenario scenario) {
-        this.scenario=scenario;
         scenarioContext.setScenario(scenario);
-        System.out.println("scenarion object in Visa page By : ==>"+ scenario );
     }
 
     @Given("I am on VISA registration form")
     public void launchSite() throws InterruptedException {
         this.driver.navigate().to("https://vins-udemy.s3.amazonaws.com/sb/visa/udemy-visa.html");
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
     }
 
@@ -86,7 +82,7 @@ public class VisaSteps {
 
     @And("I submit the form")
     public void submit() throws InterruptedException {
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
         //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
         this.registrationPage.submit();
@@ -95,7 +91,7 @@ public class VisaSteps {
     @Then("I should see get the confirmation number")
     public void verifyConfirmationNumber() throws InterruptedException {
         boolean isEmpty = StringUtils.isEmpty(this.registrationPage.getConfirmationNumber().trim());
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
         Assert.assertFalse(isEmpty);
         Thread.sleep(2000);

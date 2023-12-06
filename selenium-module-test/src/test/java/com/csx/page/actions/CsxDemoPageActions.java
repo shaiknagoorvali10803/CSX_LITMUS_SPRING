@@ -26,7 +26,6 @@ public class CsxDemoPageActions {
   @LazyAutowired
   private SeleniumUtil utils;
 
-  Scenario scenario;
   @LazyAutowired
   ScreenshotUtils screenshotUtils;
 
@@ -36,7 +35,6 @@ public class CsxDemoPageActions {
   @PostConstruct
   private void init(){
     PageFactory.initElements(this.driver, this.pageObjects);
-    scenario =scenarioContext.getScenario();
   }
 
   public boolean isHeaderImagePresent() {

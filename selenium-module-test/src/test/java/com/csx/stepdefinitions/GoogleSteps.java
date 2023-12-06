@@ -34,7 +34,6 @@ public class GoogleSteps {
     protected WebDriver driver;
     @Autowired
     protected WebDriverWait wait;
-    Scenario scenario;
     @Autowired
     ScenarioContext scenarioContext;
     @Autowired
@@ -43,14 +42,12 @@ public class GoogleSteps {
     private GooglePageActions googlePage;
     @Before
     public void settingScenario(Scenario scenario) {
-        this.scenario=scenario;
         scenarioContext.setScenario(scenario);
-        System.out.println("scenarion object in Google page by : ==>"+ scenario );
     }
     @Given("I am on the google site")
     public void launchSite() throws InterruptedException {
         this.googlePage.goTo();
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
     }
 
@@ -58,7 +55,7 @@ public class GoogleSteps {
     public void enterKeyword(String keyword) throws InterruptedException {
         this.googlePage.search(keyword);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='result-stats']")));
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
         screenshotUtils.addLog("searching for String :" + keyword);
     }
@@ -74,11 +71,11 @@ public class GoogleSteps {
         Assert.assertTrue(this.googlePage.getCount() >= count);
         SeleniumUtil.clickElementbyXPath(driver,"//a[normalize-space()='Images']");
         Thread.sleep(3000);
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
         driver.findElement(By.xpath("//a[normalize-space()='Videos']")).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='result-stats']")));
-        screenshotUtils.insertScreenshot1(scenario,"screenshot");
+        screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
         screenshotUtils.addLog(Arrays.asList("nagoor", "rubia", "nazim", "rayan"));
 

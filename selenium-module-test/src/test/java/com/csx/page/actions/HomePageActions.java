@@ -17,8 +17,10 @@ import org.springframework.beans.factory.annotation.Value;
 public class HomePageActions {
     @LazyAutowired
     ScreenshotUtils screenshotUtils;
+
     @Autowired
     WebDriver driver;
+
     @Autowired
     WebDriverWait wait;
 
@@ -27,8 +29,10 @@ public class HomePageActions {
 
     @Autowired
     ScenarioContext scenarioContext;
+
     @Value("${application.url}")
     public String url;
+
     @PostConstruct
     private void init(){
         PageFactory.initElements(this.driver, this.pageObjects);
