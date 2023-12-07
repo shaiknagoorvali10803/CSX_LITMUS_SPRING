@@ -34,10 +34,6 @@ public class CsxDemoStepDefinitions {
     @Autowired
     ScenarioContext scenarioContext;
 
-    @Before
-    public void settingScenario(Scenario scenario) {
-        scenarioContext.setScenario(scenario);
-    }
 
     @Given("I am on a {string} browser")
     public void determineBrowserType(final String browserType) {

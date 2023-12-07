@@ -11,6 +11,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import java.io.IOException;
@@ -18,6 +19,14 @@ import java.io.IOException;
 public class Hooks {
     @LazyAutowired
     private ApplicationContext applicationContext;
+
+    @Autowired
+    ScenarioContext scenarioContext;
+
+    @Before
+    public void before(final Scenario scenario){
+        scenarioContext.setScenario(scenario);
+    }
 
     @After
     public void afterScenario(Scenario scenario) throws Exception {

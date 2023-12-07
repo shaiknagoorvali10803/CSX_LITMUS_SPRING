@@ -30,11 +30,6 @@ public class HomeSteps {
     private void init(){
         PageFactory.initElements(this.driver, this);
     }
-    @Before
-    public void settingScenario(Scenario scenario) {
-        scenarioContext.setScenario(scenario);
-    }
-
 
     @Given("I am Google Page")
     public void launchSite() {

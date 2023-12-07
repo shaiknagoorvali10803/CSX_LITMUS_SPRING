@@ -4,21 +4,23 @@ import com.csx.page.actions.GooglePageActions;
 import com.csx.page.actions.VisaPageActions;
 import com.csx.springConfig.annotation.LazyAutowired;
 import com.csx.test.util.ScreenshotUtils;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import com.csx.test.util.SeleniumUtil;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import jakarta.annotation.PostConstruct;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.testng.Assert;
 
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class VisaSteps {
     @Autowired
@@ -41,11 +43,6 @@ public class VisaSteps {
     @PostConstruct
     private void init() {
         PageFactory.initElements(this.driver, this);
-    }
-
-    @Before
-    public void settingScenario(Scenario scenario) {
-        scenarioContext.setScenario(scenario);
     }
 
     @Given("I am on VISA registration form")
@@ -75,26 +72,20 @@ public class VisaSteps {
         this.registrationPage.setContactDetails(email, phone);
     }
 
-    @And("I enter the comment {string}")
-    public void enterComment(String comment) {
-        this.registrationPage.setComments(comment);
-    }
 
-    @And("I submit the form")
-    public void submit() throws InterruptedException {
+    @Then("I should see at least {int} results")
+    public void verifyResults(int count) throws InterruptedException, IOException {
+        Assert.assertTrue(this.googlePage.getCount() >= count);
+        SeleniumUtil.clickElementbyXPath(driver,"//a[normalize-space()='Images']");
+        Thread.sleep(3000);
         screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
-        //Allure.addAttachment("Screenshot", new ByteArrayInputStream(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES)));
-        this.registrationPage.submit();
-    }
-
-    @Then("I should see get the confirmation number")
-    public void verifyConfirmationNumber() throws InterruptedException {
-        boolean isEmpty = StringUtils.isEmpty(this.registrationPage.getConfirmationNumber().trim());
+        driver.findElement(By.xpath("//a[normalize-space()='Videos']")).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@id='result-stats']")));
         screenshotUtils.insertScreenshot1(scenarioContext.getScenario(),"screenshot");
         screenshotUtils.insertScreenshot("screenshot");
-        Assert.assertFalse(isEmpty);
-        Thread.sleep(2000);
+        screenshotUtils.addLog(Arrays.asList("nagoor", "rubia", "nazim", "rayan"));
+
     }
 
 }
