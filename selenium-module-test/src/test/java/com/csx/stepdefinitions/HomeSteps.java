@@ -18,13 +18,13 @@ public class HomeSteps {
     @LazyAutowired
     private HomePageActions homePage;
     @Autowired
-    protected WebDriver driver;
+    private WebDriver driver;
 
     @Autowired
-    protected WebDriverWait wait;
+    private WebDriverWait wait;
 
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     @PostConstruct
     private void init(){

@@ -7,3 +7,5 @@
 /restassured-module-test/Log/
 /restassured-module-test/target/
 /kafka-protobuf-cucumber-module-test/target/
+/selenium-module-test/EXTENT_REPORTS/
+/restassured-module-test/EXTENT_REPORTS/

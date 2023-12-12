@@ -23,15 +23,15 @@ import java.net.URL;
 @Page
 public class GooglePageActions {
     @Autowired
-    WebDriver driver;
+    private WebDriver driver;
     @Autowired
-    WebDriverWait wait;
+    private WebDriverWait wait;
     @LazyAutowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
     @LazyAutowired
-    GooglePageObjects pageObjects;
+    private GooglePageObjects pageObjects;
 
     @Value("${application.url}")
     private String url;

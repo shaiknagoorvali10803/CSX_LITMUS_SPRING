@@ -24,21 +24,21 @@ import java.util.Arrays;
 
 public class VisaSteps {
     @Autowired
-    protected WebDriver driver;
+    private WebDriver driver;
 
     @Autowired
-    protected WebDriverWait wait;
+    private WebDriverWait wait;
 
     @LazyAutowired
     private VisaPageActions registrationPage;
 
     @Autowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
     @LazyAutowired
     private GooglePageActions googlePage;
 
     @LazyAutowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     @PostConstruct
     private void init() {

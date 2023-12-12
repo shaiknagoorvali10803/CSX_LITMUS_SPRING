@@ -34,13 +34,13 @@ import java.util.Arrays;
 public class GoogleSteps {
 
     @Autowired
-    protected WebDriver driver;
+    private WebDriver driver;
     @Autowired
-    protected WebDriverWait wait;
+    private WebDriverWait wait;
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
     @Autowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
     @LazyAutowired
     private GooglePageActions googlePage;
 

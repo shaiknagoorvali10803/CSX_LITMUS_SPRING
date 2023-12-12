@@ -30,9 +30,9 @@ public class CsxDemoStepDefinitions {
     private WebDriver driver;
 
     @LazyAutowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
 
     @Given("I am on a {string} browser")

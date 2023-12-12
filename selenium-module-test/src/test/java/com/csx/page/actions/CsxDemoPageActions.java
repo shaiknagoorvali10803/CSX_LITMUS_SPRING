@@ -27,10 +27,10 @@ public class CsxDemoPageActions {
   private SeleniumUtil utils;
 
   @LazyAutowired
-  ScreenshotUtils screenshotUtils;
+  private ScreenshotUtils screenshotUtils;
 
   @Autowired
-  ScenarioContext scenarioContext;
+  private ScenarioContext scenarioContext;
 
   @PostConstruct
   private void init(){

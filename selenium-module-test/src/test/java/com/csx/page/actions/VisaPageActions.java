@@ -18,18 +18,19 @@ import java.util.Objects;
 @Page
 public class VisaPageActions {
     @LazyAutowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
     @Autowired
-    WebDriver driver;
+    private WebDriver driver;
 
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     @LazyAutowired
-    VisaPageObjects pageObjects;
+    private VisaPageObjects pageObjects;
 
     @Autowired
-    WebDriverWait wait;
+    private WebDriverWait wait;
+
     @PostConstruct
     private void init(){
         PageFactory.initElements(this.driver, this.pageObjects);

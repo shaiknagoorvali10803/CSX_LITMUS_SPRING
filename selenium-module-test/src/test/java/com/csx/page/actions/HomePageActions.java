@@ -16,19 +16,19 @@ import org.springframework.beans.factory.annotation.Value;
 @Page
 public class HomePageActions {
     @LazyAutowired
-    ScreenshotUtils screenshotUtils;
+    private ScreenshotUtils screenshotUtils;
 
     @Autowired
-    WebDriver driver;
+    private WebDriver driver;
 
     @Autowired
-    WebDriverWait wait;
+    private WebDriverWait wait;
 
     @LazyAutowired
-    HomePageObjects pageObjects;
+    private HomePageObjects pageObjects;
 
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     @Value("${application.url}")
     public String url;
