@@ -21,7 +21,7 @@ public class Hooks {
     private ApplicationContext applicationContext;
 
     @Autowired
-    ScenarioContext scenarioContext;
+    private ScenarioContext scenarioContext;
 
     @Before
     public void before(final Scenario scenario){
